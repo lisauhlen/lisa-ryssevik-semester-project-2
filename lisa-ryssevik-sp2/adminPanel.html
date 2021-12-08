@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Joyaux Handmade Jewelry</title>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <button type="button" id="logout">Logout</button>
+    <h1>Admin Panel</h1>
+    <h2>Add Products to Store</h2>
+    <div class="add-message-container"></div>
+    <form id="add-product">
+        <div>
+            <input name="add-name" id="add-name" placeholder="Product Name">
+        </div>
+        <div>
+            <select id="add-category" name="add-category">
+                <option value="" disabled selected>Product Category</option>
+                <option value="bracelets">Bracelets</option>
+                <option value="earrings">Earrings</option>
+                <option value="necklaces">Necklaces</option>
+                <option value="rings">Rings</option>
+            </select>
+        </div>
+        <div>
+            <input name="add-price" id="add-price" placeholder="Price">
+        </div>
+        <div>
+            <input name="add-description" id="add-description" placeholder="Product Description">
+        </div>
+        <div>
+            <input name="add-image" id="add-image" placeholder="Image URL">
+        </div>
+        <div>
+            <select id="add-featured" name="add-featured">
+                <option value="" disabled selected>Featured</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <button type="submit">Add Product to Store</button>
+    </form>
+
+
+    <h2>Edit Existing Products</h2>
+    <form id="select-products-form">
+        <select class="products-dropdown"></select>
+        <button type="submit">Confirm</button>
+    </form>
+    <div class="edit-message-container"></div>
+    <form id="edit-product">
+        <div>
+            <input name="edit-name" id="edit-name">
+        </div>
+        <div>
+            <select id="edit-category" name="edit-category">
+                <option value="" disabled selected>Product Category</option>
+                <option value="bracelets">Bracelets</option>
+                <option value="earrings">Earrings</option>
+                <option value="necklaces">Necklaces</option>
+                <option value="rings">Rings</option>
+            </select>
+        </div>
+        <div>
+            <input name="edit-price" id="edit-price">
+        </div>
+        <div>
+            <input name="edit-description" id="edit-description">
+        </div>
+        <div>
+            <select id="edit-featured" name="edit-featured">
+                <option value="" disabled selected>Featured</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div>
+            <input name="edit-id" id="edit-id" type="hidden">
+        </div>
+        <button type="submit">Update Existing Product</button>
+        <div class="delete-button-container"></div>
+    </form>
+
+
+    <script type="module" src="js/components/admin/adminAddProduct.js"></script>
+    <script type="module" src="js/components/admin/adminEditProduct.js"></script>
+    <script type="module" src="js/components/admin/logoutButton.js"></script>
+</body>
+</html>

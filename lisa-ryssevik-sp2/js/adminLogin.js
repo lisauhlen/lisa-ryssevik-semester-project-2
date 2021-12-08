@@ -1,0 +1,61 @@
+import { baseUrl } from "./settings/api.js"
+import userMessages from "./components/commons/userMessages.js";
+import { saveToken, saveUser} from "./components/commons/localStorage.js";
+
+
+const loginForm = document.querySelector("#admin-login");
+const email = document.querySelector("#email");
+const password = document.querySelector("#password");
+const messageContainer = document.querySelector(".message-container");
+
+loginForm.onsubmit = function(event) {
+    event.preventDefault();
+
+    messageContainer.innerHTML = "";
+
+    const emailValue = email.value.trim();
+    const passwordValue = password.value.trim();
+
+    if(emailValue.length === 0 || passwordValue.length === 0) {
+        return userMessages("error", "Email and/or password is incorrect.", ".message-container");
+    }
+
+    adminLogin(emailValue, passwordValue);
+}
+
+async function adminLogin(email, password) {
+
+    const loginUrl = baseUrl + "auth/local";
+
+    const data = JSON.stringify({"identifier": email, "password": password})
+
+    const options = {
+        method: "POST",
+        body: data, 
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+
+
+    try {
+        const response = await fetch(loginUrl, options);
+
+        const result = await response.json();
+
+        if(result.user) {
+            saveToken(result.jwt);
+            saveUser(result.user);
+
+            location.href = "adminPanel.html";
+        }
+
+        if(result.error) {
+            const errorMessage = result.message[0].messages[0].message;
+            userMessages("error", errorMessage, ".message-container");
+        }
+
+    } catch(error) {
+        console.log(error);
+    }
+}

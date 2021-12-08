@@ -43,6 +43,9 @@
       "plugin": "upload",
       "required": true,
       "pluginOptions": {}
+    },
+    "imgUrl": {
+      "type": "string"
     }
   }
 }
