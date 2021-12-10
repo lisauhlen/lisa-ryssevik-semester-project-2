@@ -1,4 +1,4 @@
-import { imageBaseUrl } from "../../settings/api.js";
+// import { imageBaseUrl } from "../../settings/api.js";
 import { saveProduct, getCartList } from "../commons/localStorage.js";
 
 const cartList = getCartList();
@@ -15,7 +15,7 @@ export function createProductDetails(product){
     detailsContainer.innerHTML = "";
 
     detailsContainer.innerHTML += `<div>
-                                        <img src="${imageBaseUrl}${product.name}.jpg">
+                                        <img src="${product.imgUrl}" alt="The ${product.name} ${product.category} from Joyaux Jewelry">
                                         <p>${product.name}</p>
                                         <p>${product.category}</p>
                                         <p>${product.description}</p>
@@ -49,25 +49,5 @@ function addToCart(product) {
       cartList.push(product);
       saveProduct(cartList);
     }
-  
-    // cartButton.innerHTML = 'Successfully Added to Cart!';
-    // cartLink.style.display = 'block';
   }
 
-
-  
-// function addToCart(product) {
-
-//     for(let i = 0; i < cartList.length; i++) {
-//         console.log(cartList[i].id);
-
-//         if(product.id === cartList[i].id) {
-//             console.log("Ids are the same");
-//         } else {
-//             cartList.push(product);
-//             saveToStorage(cartList);
-//         }
-
-//     }
-    
-// }

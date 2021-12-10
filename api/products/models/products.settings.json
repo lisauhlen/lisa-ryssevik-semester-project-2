@@ -46,6 +46,11 @@
     },
     "imgUrl": {
       "type": "string"
+    },
+    "quantity": {
+      "type": "biginteger",
+      "default": "1",
+      "min": "1"
     }
   }
 }

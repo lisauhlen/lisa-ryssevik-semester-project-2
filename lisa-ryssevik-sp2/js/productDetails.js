@@ -20,7 +20,6 @@ const detailsUrl = productsUrl + "/" + id;
         createProductDetails(result);
 
     } catch (error) {
-        console.log(error);
         userMessages("error", "Unfortunately, we couldn't load products. Please try again later.", ".products-container");
     }
 

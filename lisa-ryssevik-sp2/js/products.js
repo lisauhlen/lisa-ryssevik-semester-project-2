@@ -1,6 +1,7 @@
 import { createProducts } from "./components/createHtml/productsHtml.js";
 import { productsUrl } from "./settings/api.js";
 import userMessages from "./components/commons/userMessages.js";
+import { searchProducts } from "./components/commons/searchProducts.js"
 
 (async function() {
 
@@ -10,11 +11,9 @@ import userMessages from "./components/commons/userMessages.js";
         const result = await response.json();
 
         createProducts(result);
-
-        console.log(result);
+        searchProducts(result);
 
     } catch (error) {
-        console.log(error);
         userMessages("error", "Unfortunately, we couldn't load products. Please try again later.", ".products-container");
     }
 
