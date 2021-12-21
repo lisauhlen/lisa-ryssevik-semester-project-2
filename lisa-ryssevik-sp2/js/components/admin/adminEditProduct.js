@@ -70,7 +70,7 @@ async function updateProduct(name, category, price, description, imgUrl, feature
         const result = await response.json();
 
         if(result.updated_at) {
-            userMessages("success", "Product was successfully updated.", ".edit-message-container");
+            userMessages("success", `Product was successfully updated. <a href="products.html">Visit the products page.</a>`, ".edit-message-container");
             getSelectProducts();
         }
 

@@ -1,5 +1,4 @@
-// import { imageBaseUrl } from "../../settings/api.js";
-import { searchProducts } from "../commons/searchProducts.js";
+// Creating html to display all products with link to the product details page
 
 export function createProducts(products){
     const productsContainer = document.querySelector(".products-container");
@@ -18,14 +17,7 @@ export function createProducts(products){
                                                 <p class="author">Kr. ${product.price},-</p>
                                             </a>`;
 
-
-
         });
     }
     renderProducts();
-
 };
-
-
-
-//<img src="${imageBaseUrl}${product.name}.jpg">

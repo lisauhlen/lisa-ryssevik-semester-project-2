@@ -6,6 +6,9 @@ import { displayCartIcon } from "./components/createHtml/cartIcon.js";
 
 displayCartIcon();
 
+
+// Getting all products from the API
+
 (async function() {
 
     try {

@@ -1,8 +1,12 @@
-// import { imageBaseUrl } from "../../settings/api.js";
 import { saveProduct, getCartList } from "../commons/localStorage.js";
 import { cartQuantity } from "./cartIcon.js";
 
+// Getting the cart list from local storage
+
 const cartList = getCartList();
+
+
+// Creating html for the product details page 
 
 export function createProductDetails(product){
 
@@ -23,6 +27,8 @@ export function createProductDetails(product){
                                         <p class="author">Kr. ${product.price},-</p>
                                     </div>`;
     
+    
+    // Adding click function to Add to cart button, updating the cart icon, and displaying success message
     cartButton.addEventListener("click", function() {
         addToCart(product);
         cartQuantity();
@@ -32,12 +38,13 @@ export function createProductDetails(product){
 
 };
 
+
+// Checking if product is already in cart - if not, adding it to cart
+
 function addToCart(product) {
-    // const cartLink = document.querySelector('.cart-link');
   
     const currentProductId = product.id;
   
-    // This reduces values down to one result, being the 'isFound' parameter
     const itemInCart = cartList.reduce((isFound, item) => {
       if (item.id === currentProductId) {
         isFound = true;

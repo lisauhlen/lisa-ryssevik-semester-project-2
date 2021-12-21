@@ -25,7 +25,7 @@ export function getUsername(){
 }
 
 
-//Add products to cart/get cart list
+//Add products to cart and get cart list
 export function saveProduct(product) {
     saveToStorage(listKey, product);
 }
@@ -36,10 +36,10 @@ export function getCartList() {
 
 
 //Log out from Admin Panel
-
 export function removeItemFromStorage(key) {
     localStorage.removeItem(key);
 }
+
 
 //Save and retrieve from local storage
 function saveToStorage(key, valueToSave) {

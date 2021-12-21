@@ -1,6 +1,9 @@
 import { calculateTotal } from "../commons/calculateTotal.js";
 import { shippingPrice } from "../../settings/settings.js";
 
+
+// Calculating the total price of all products in cart
+
 export function calculateTotalPrice(defaultPrice) {
 
     const priceContainer = document.querySelector(".price-container");
@@ -13,6 +16,9 @@ export function calculateTotalPrice(defaultPrice) {
 
     displayTotalPrice(priceContainer, totalPrice);
 }
+
+
+// Displaying the total price of all products in cart
 
 function displayTotalPrice(priceContainer, totalPrice) {  
 

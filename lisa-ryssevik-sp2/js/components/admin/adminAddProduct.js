@@ -19,6 +19,7 @@ export function activateAddForm() {
     form.addEventListener("submit", submitForm);
 }
 
+
 // Getting and validating all the form values
 
 function submitForm(event) {
@@ -36,9 +37,7 @@ function submitForm(event) {
     const validate = validateAdminForm(messageContainer.className, productNameValue, categoryValue, priceValue, descriptionValue, imageUrlValue, featuredValue);
 
     if(validate) {
-
         const imgUrl = "https://res.cloudinary.com/lisaur/image/fetch/" + imageUrlValue; 
-        console.log(imgUrl);
         addproduct(productNameValue, categoryValue, priceValue, descriptionValue, imgUrl, featuredValue);
     }
     

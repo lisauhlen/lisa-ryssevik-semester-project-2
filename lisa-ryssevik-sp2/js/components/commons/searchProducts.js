@@ -1,5 +1,8 @@
 import { createProducts } from "../createHtml/productsHtml.js";
 
+
+// Letting the user search by product name or category
+
 export function searchProducts(products) {
 
     const search = document.querySelector(".search-products");
@@ -18,7 +21,5 @@ export function searchProducts(products) {
         })
         createProducts(filteredProducts);
     }
-
-
 }
 

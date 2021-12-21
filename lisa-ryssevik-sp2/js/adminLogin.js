@@ -11,7 +11,7 @@ const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 const messageContainer = document.querySelector(".message-container");
 
-// Validate login details.
+// Validating the login details
 loginForm.onsubmit = function(event) {
     event.preventDefault();
 
@@ -32,7 +32,7 @@ loginForm.onsubmit = function(event) {
 }
 
 
-// Logging in.
+// Logging in to Admin Panel with POST request
 async function adminLogin(email, password) {
 
     const loginUrl = baseUrl + "auth/local";

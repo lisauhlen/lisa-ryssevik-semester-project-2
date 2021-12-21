@@ -1,3 +1,5 @@
+// Reusable function generating user messages
+
 export default function userMessages(messageType, message, messageContainer) {
     const container = document.querySelector(messageContainer);
 

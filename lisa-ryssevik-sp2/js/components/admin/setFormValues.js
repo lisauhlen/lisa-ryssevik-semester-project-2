@@ -15,10 +15,9 @@ const imageUrl = document.querySelector("#edit-image");
 const featured = document.querySelector("#edit-featured");
 const idInput = document.querySelector("#edit-id");
 
-// Make a selection dropdown with all products 
+// Getting all products from the API
 
 export async function getSelectProducts() {
-
     try {
         const response = await fetch(productsUrl);
 
@@ -29,9 +28,10 @@ export async function getSelectProducts() {
     } catch (error) {
         userMessages("error", "Unfortunately, we couldn't load products. Please try again later.", ".edit-message-container");
     }
-
 }
 
+
+// Making a selection dropdown containing all products 
 
 function selectProducts(products) {
 
@@ -44,7 +44,7 @@ function selectProducts(products) {
 };
 
 
-// Get product id
+// Get the chosen product's id
 
 productsForm.addEventListener("submit", getProductId);
     
@@ -58,7 +58,8 @@ function getProductId(event) {
     populateForm(id);
 }
 
-// Populating the form
+
+// Filling the form with the chosen product's info
 
 async function populateForm(id) {
 

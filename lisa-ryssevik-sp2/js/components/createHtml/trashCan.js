@@ -1,6 +1,9 @@
 import { checkCartContent } from "../checkCartContent.js";
 import { saveProduct, getCartList } from "../commons/localStorage.js"
 
+
+// Selecting all the trash can icons and adding click functions
+
 export function trashCanHtml() {
 
     const removeButton = document.querySelectorAll(".trash-can");
@@ -10,6 +13,8 @@ export function trashCanHtml() {
     })
 }
 
+
+// Removing chosen item from cart, updating local storage and html
 
 function removeFromCart(event) {
 

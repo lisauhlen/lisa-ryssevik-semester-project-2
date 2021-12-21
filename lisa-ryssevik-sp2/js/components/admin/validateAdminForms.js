@@ -1,8 +1,8 @@
-import { validateLength } from "../commons/validateForm.js";
+import { validateLength, validateURL } from "../commons/validateForm.js";
 import userMessages from "../commons/userMessages.js";
 
 
-// Validate the Add Products to Store form
+// Validating the admin forms' values
 
 export function validateAdminForm(messageContainer, productNameValue, categoryValue, priceValue, descriptionValue, imageUrlValue, featuredValue) {
 
@@ -22,8 +22,8 @@ export function validateAdminForm(messageContainer, productNameValue, categoryVa
         return userMessages("error", "Product description must have at least 10 characters.", `.${messageContainer}`);
     }
 
-    if(!imageUrlValue) {
-        return userMessages("error", "Please enter the image URL.", `.${messageContainer}`);
+    if(!validateURL(imageUrlValue)) {
+        return userMessages("error", "Please enter a valid image URL.", `.${messageContainer}`);
     }
 
     if(!featuredValue) {

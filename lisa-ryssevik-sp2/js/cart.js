@@ -2,7 +2,6 @@ import { trashCanHtml } from "./components/createHtml/trashCan.js";
 import { calculateTotalPrice } from "./components/createHtml/totalPrice.js"
 import { checkCartContent } from "./components/checkCartContent.js";
 import { saveProduct } from "./components/commons/localStorage.js";
-// import { checkQuantity } from "./components/createHtml/checkQuantity.js";
 import { displayCartIcon } from "./components/createHtml/cartIcon.js";
 
 displayCartIcon();
@@ -10,12 +9,13 @@ displayCartIcon();
 const cartContainer = document.querySelector(".cart-container");
 
 let productQuantity = {id: 0};
-// let productsInCart = [];
 
 
+// Checking if the cart has content
 checkCartContent();
 
 
+// Creating html from the cart content
 export function createCartHtml(product) {
 
     function productHtml(product) {
@@ -24,8 +24,6 @@ export function createCartHtml(product) {
         let defaultPrice = [];
 
         product.forEach(function (product) {
-
-            // checkQuantity(product, productQuantity);
 
             let productPrice = product.price * product.quantity;
 
@@ -43,6 +41,8 @@ export function createCartHtml(product) {
                                             <button type="button" class="trash-can" data-item="${product.id}">Remove</button>
                                         </div>
                                         `;
+
+            // Displaying trash can icons, applying click function to arrows, and updating total price
             trashCanHtml();
             changeQuantity();
 
@@ -55,7 +55,7 @@ export function createCartHtml(product) {
 
 
     
-
+// Allowing user to change the quantity of each product in the cart
 
     function changeQuantity() {
         

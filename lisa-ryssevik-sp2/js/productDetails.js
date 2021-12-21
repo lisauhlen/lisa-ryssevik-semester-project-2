@@ -5,6 +5,7 @@ import { displayCartIcon } from "./components/createHtml/cartIcon.js";
 
 displayCartIcon();
 
+// Getting the product id from the querystring
 const queryString = document.location.search;
 
 const params = new URLSearchParams(queryString);
@@ -13,6 +14,8 @@ const id = params.get("id");
 
 const detailsUrl = productsUrl + "/" + id;
 
+
+// Getting the chosen product from the API
 (async function() {
 
     try {
