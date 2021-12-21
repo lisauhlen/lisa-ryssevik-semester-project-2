@@ -1,5 +1,6 @@
 // import { imageBaseUrl } from "../../settings/api.js";
 import { saveProduct, getCartList } from "../commons/localStorage.js";
+import { cartQuantity } from "./cartIcon.js";
 
 const cartList = getCartList();
 
@@ -23,7 +24,8 @@ export function createProductDetails(product){
                                     </div>`;
     
     cartButton.addEventListener("click", function() {
-        addToCart(product)
+        addToCart(product);
+        cartQuantity();
         cartButton.innerHTML = "Successfully Added to Cart!";
         cartLink.style.display = "block";
       });

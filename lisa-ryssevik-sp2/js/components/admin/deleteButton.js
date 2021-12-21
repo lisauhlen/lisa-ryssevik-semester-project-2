@@ -1,10 +1,11 @@
 import { productsUrl } from "../../settings/api.js";
 import { getToken } from "../commons/localStorage.js";
-import { getSelectProducts } from "./editDeleteSection.js";
+import { getSelectProducts } from "./setFormValues.js";
 import userMessages from "../commons/userMessages.js";
 
 const form = document.querySelector("#edit-product");
-const productsDropdown = document.querySelector(".products-dropdown");
+
+// Deleting product from API with DELETE request
 
 export default function deleteButton(id) {
     const deleteContainer = document.querySelector(".delete-button-container");
@@ -14,11 +15,9 @@ export default function deleteButton(id) {
     const button = document.querySelector(".delete-button");
 
     button.onclick = async function() {
-        
         const confirmDeletion = confirm("Are you sure you want to delete this product from the store?");
 
         if(confirmDeletion) {
-
             const deletUrl = productsUrl + "/" + id;
 
             const token = getToken();

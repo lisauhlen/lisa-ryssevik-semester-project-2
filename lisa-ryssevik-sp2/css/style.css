@@ -4,6 +4,13 @@
 img {
     width: 200px;
 }
+.arrow-up,
+.arrow-down {
+  max-width: 12px;
+}
+.cart-icon {
+  max-width: 30px;
+}
 
 .product-div {
     display: block;

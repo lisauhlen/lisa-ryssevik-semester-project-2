@@ -1,44 +1,115 @@
-import { getCartList } from "./components/commons/localStorage.js";
-import { imageBaseUrl } from "./settings/api.js";
-import { calculateTotal } from "./components/commons/calculateTotal.js";
-import { shippingPrice } from "./settings/settings.js";
+import { trashCanHtml } from "./components/createHtml/trashCan.js";
+import { calculateTotalPrice } from "./components/createHtml/totalPrice.js"
+import { checkCartContent } from "./components/checkCartContent.js";
+import { saveProduct } from "./components/commons/localStorage.js";
+// import { checkQuantity } from "./components/createHtml/checkQuantity.js";
+import { displayCartIcon } from "./components/createHtml/cartIcon.js";
 
-const cartContent = getCartList();
+displayCartIcon();
 
 const cartContainer = document.querySelector(".cart-container");
 
-console.log(cartContent.length);
+let productQuantity = {id: 0};
+// let productsInCart = [];
 
-if(cartContent.length === 0) {
-    cartContainer.innerHTML = "You have no products in your cart.";
-} else {
 
-    createCartHtml(cartContent);
+checkCartContent();
 
-    function createCartHtml(product) {
-        const priceContainer = document.querySelector(".price-container");
+
+export function createCartHtml(product) {
+
+    function productHtml(product) {
+        cartContainer.innerHTML = "";
 
         let defaultPrice = [];
 
-        cartContainer.innerHTML = "";
-
         product.forEach(function (product) {
 
-            cartContainer.innerHTML += `<img src="${imageBaseUrl}${product.name}.jpg" alt="${product.name} ${product.category}">
-                                        <p>${product.name}</p>
-                                        <p>${product.price}</p>
+            // checkQuantity(product, productQuantity);
+
+            let productPrice = product.price * product.quantity;
+
+            cartContainer.innerHTML += `<div>
+                                            <a href="productDetails.html?id=${product.id}">
+                                                <img src="${product.imgUrl}" alt="${product.name} ${product.category}">
+                                                <p>${product.name}</p>
+                                            </a>
+                                            <div>
+                                                <img src="images/arrow-down.svg" alt="arrow down" class="arrow-down" data-item="${product.id}">
+                                                    <span>${product.quantity}</span>
+                                                <img src="images/arrow-up.svg" alt="arrow up" class="arrow-up" data-item="${product.id}">
+                                            </div>
+                                            <p class="price-field">${productPrice}</p>
+                                            <button type="button" class="trash-can" data-item="${product.id}">Remove</button>
+                                        </div>
                                         `;
+            trashCanHtml();
+            changeQuantity();
 
-            defaultPrice.push(product.price);
-            
+            defaultPrice.push(productPrice);
+            calculateTotalPrice(defaultPrice);
         });
+    // saveProduct(product);
+    }
+    productHtml(product);
 
-        const totalPrice = defaultPrice.reduce(calculateTotal);
 
-        priceContainer.innerHTML += `<p>Products: Kr. ${totalPrice},-</p>
-                                    <p>Shipping: Kr. ${shippingPrice},-</p>
-                                    <p>Total: Kr. ${totalPrice + shippingPrice},-</p>`;
-    };
+    
 
-}
 
+    function changeQuantity() {
+        
+        const arrowUp = document.querySelectorAll(".arrow-up");
+        const arrowDown = document.querySelectorAll(".arrow-down");
+
+        arrowUp.forEach(function(arrow) {
+            arrow.addEventListener("click", quantityUp);   
+        })
+
+        arrowDown.forEach(function(arrow) {
+            arrow.addEventListener("click", quantityDown);   
+        })
+    }
+        
+    function quantityUp(event) {
+        
+        productQuantity.id = parseInt(event.target.dataset.item);
+
+        for (let i = 0; i < product.length; i++) {
+
+            if(product[i].id === productQuantity.id) {
+                product[i].quantity = parseInt(product[i].quantity) + 1;
+                saveProduct(product);
+            }
+        }
+        productHtml(product);
+    }
+
+    function quantityDown(event) {
+
+        productQuantity.id = parseInt(event.target.dataset.item);
+        
+        for (let i = 0; i < product.length; i++) {
+
+            if(product[i].id === productQuantity.id) {
+                product[i].quantity = parseInt(product[i].quantity) - 1;
+                saveProduct(product);                
+            }
+
+            if(product[i].quantity < 1) {
+                const newProductList = product.filter(function(item) {
+                    if(product[i].id !== item.id) {
+                        return true;
+                    }
+                })
+
+                saveProduct(newProductList);
+                return checkCartContent();
+
+            }
+        }
+        
+        productHtml(product);
+    }
+
+};

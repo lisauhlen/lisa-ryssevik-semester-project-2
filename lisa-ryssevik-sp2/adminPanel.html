@@ -8,6 +8,16 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
+    <div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="adminLogin.html">Login</a></li>
+            <li><a href="adminPanel.html">Admin Panel</a></li>
+        </ul>
+    </div>
+    <div class="cart-icon"></div>
     <button type="button" id="logout">Logout</button>
     <h1>Admin Panel</h1>
     <h2>Add Products to Store</h2>
@@ -45,7 +55,7 @@
     </form>
 
 
-    <h2>Edit Existing Products</h2>
+    <h2>Edit or Delete Products</h2>
     <form id="select-products-form">
         <select class="products-dropdown"></select>
         <button type="submit">Confirm</button>
@@ -71,6 +81,9 @@
             <input name="edit-description" id="edit-description">
         </div>
         <div>
+            <input name="edit-image" id="edit-image" placeholder="Image URL">
+        </div>
+        <div>
             <select id="edit-featured" name="edit-featured">
                 <option value="" disabled selected>Featured</option>
                 <option value="true">Yes</option>
@@ -84,9 +97,7 @@
         <div class="delete-button-container"></div>
     </form>
 
-
-    <script type="module" src="js/components/admin/adminAddProduct.js"></script>
-    <script type="module" src="js/components/admin/adminEditProduct.js"></script>
+    <script type="module" src="js/adminPanel.js"></script>
     <script type="module" src="js/components/admin/logoutButton.js"></script>
 </body>
 </html>

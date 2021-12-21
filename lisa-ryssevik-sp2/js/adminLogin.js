@@ -1,13 +1,17 @@
 import { baseUrl } from "./settings/api.js"
 import userMessages from "./components/commons/userMessages.js";
 import { saveToken, saveUser} from "./components/commons/localStorage.js";
+import { validateEmail, validateLength } from "./components/commons/validateForm.js";
+import { displayCartIcon } from "./components/createHtml/cartIcon.js";
 
+displayCartIcon();
 
 const loginForm = document.querySelector("#admin-login");
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 const messageContainer = document.querySelector(".message-container");
 
+// Validate login details.
 loginForm.onsubmit = function(event) {
     event.preventDefault();
 
@@ -16,13 +20,19 @@ loginForm.onsubmit = function(event) {
     const emailValue = email.value.trim();
     const passwordValue = password.value.trim();
 
-    if(emailValue.length === 0 || passwordValue.length === 0) {
-        return userMessages("error", "Email and/or password is incorrect.", ".message-container");
+    if(!validateEmail(emailValue)) {
+        return userMessages("error", "Please provide a proper email address.", ".message-container");
+    }
+
+    if(!validateLength(passwordValue, 8)) {
+        return userMessages("error", "Password must be at least eight characters.", ".message-container");
     }
 
     adminLogin(emailValue, passwordValue);
 }
 
+
+// Logging in.
 async function adminLogin(email, password) {
 
     const loginUrl = baseUrl + "auth/local";
@@ -52,7 +62,7 @@ async function adminLogin(email, password) {
 
         if(result.error) {
             const errorMessage = result.message[0].messages[0].message;
-            userMessages("error", errorMessage, ".message-container");
+            userMessages("error", "Unable to login: " + errorMessage, ".message-container");
         }
 
     } catch(error) {

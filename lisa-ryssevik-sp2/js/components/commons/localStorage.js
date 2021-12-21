@@ -25,7 +25,7 @@ export function getUsername(){
 }
 
 
-//Add products to cart
+//Add products to cart/get cart list
 export function saveProduct(product) {
     saveToStorage(listKey, product);
 }

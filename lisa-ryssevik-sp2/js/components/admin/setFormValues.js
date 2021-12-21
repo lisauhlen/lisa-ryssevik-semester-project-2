@@ -1,15 +1,17 @@
-import { productsUrl } from "./../../settings/api.js";
+import { productsUrl } from "../../settings/api.js";
 import userMessages from "../commons/userMessages.js";
 import deleteButton from "./deleteButton.js";
 
 const productsForm = document.querySelector("#select-products-form");
 const productsDropdown = document.querySelector(".products-dropdown");
 
+const messageContainer = document.querySelector(".edit-message-container");
 const form = document.querySelector("#edit-product");
 const productName = document.querySelector("#edit-name");
 const category = document.querySelector("#edit-category");
 const price = document.querySelector("#edit-price");
 const description = document.querySelector("#edit-description");
+const imageUrl = document.querySelector("#edit-image");
 const featured = document.querySelector("#edit-featured");
 const idInput = document.querySelector("#edit-id");
 
@@ -51,6 +53,8 @@ function getProductId(event) {
 
     const id = productsDropdown.value;
 
+    messageContainer.innerHTML = "";
+
     populateForm(id);
 }
 
@@ -68,6 +72,7 @@ async function populateForm(id) {
         category.value = result.category;
         price.value = result.price;
         description.value = result.description;
+        imageUrl.value = result.imgUrl;
         featured.value = result.featured;
         idInput.value = result.id;
 

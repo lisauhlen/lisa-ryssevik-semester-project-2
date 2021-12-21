@@ -1,6 +1,9 @@
 import { createProductDetails } from "./components/createHtml/productDetailsHtml.js";
 import { productsUrl } from "./settings/api.js";
 import userMessages from "./components/commons/userMessages.js";
+import { displayCartIcon } from "./components/createHtml/cartIcon.js";
+
+displayCartIcon();
 
 const queryString = document.location.search;
 

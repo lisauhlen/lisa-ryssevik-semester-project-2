@@ -34,16 +34,6 @@
       "default": false,
       "required": true
     },
-    "image": {
-      "collection": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
-      "plugin": "upload",
-      "required": true,
-      "pluginOptions": {}
-    },
     "imgUrl": {
       "type": "string"
     },

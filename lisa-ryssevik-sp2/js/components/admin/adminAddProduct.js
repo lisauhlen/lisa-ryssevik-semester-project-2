@@ -1,7 +1,8 @@
 import userMessages from "../commons/userMessages.js";
 import { productsUrl } from "../../settings/api.js";
 import { getToken } from "../commons/localStorage.js";
-import { getSelectProducts } from "./editDeleteSection.js";
+import { getSelectProducts } from "./setFormValues.js";
+import { validateAdminForm } from "./validateAdminForms.js";
 
 const form = document.querySelector("#add-product");
 const productName = document.querySelector("#add-name");
@@ -12,7 +13,13 @@ const imageUrl = document.querySelector("#add-image");
 const featured = document.querySelector("#add-featured");
 const messageContainer = document.querySelector(".add-message-container");
 
-form.addEventListener("submit", submitForm);
+// Activating the form's submit function
+
+export function activateAddForm() {
+    form.addEventListener("submit", submitForm);
+}
+
+// Getting and validating all the form values
 
 function submitForm(event) {
     event.preventDefault();
@@ -26,12 +33,18 @@ function submitForm(event) {
     const imageUrlValue = imageUrl.value.trim();
     const featuredValue = featured.value;
 
-    if(productNameValue.length === 0 || !categoryValue || priceValue.length === 0 || isNaN(priceValue) || descriptionValue.length === 0 || imageUrlValue.length === 0 || !featuredValue) {
-        return userMessages("error", "Please provide correct information.", ".add-message-container");
-    }
+    const validate = validateAdminForm(messageContainer.className, productNameValue, categoryValue, priceValue, descriptionValue, imageUrlValue, featuredValue);
 
-    addproduct(productNameValue, categoryValue, priceValue, descriptionValue, imageUrlValue, featuredValue);
+    if(validate) {
+
+        const imgUrl = "https://res.cloudinary.com/lisaur/image/fetch/" + imageUrlValue; 
+        console.log(imgUrl);
+        addproduct(productNameValue, categoryValue, priceValue, descriptionValue, imgUrl, featuredValue);
+    }
+    
 }
+
+// Adding the new product with POST request to API
 
 async function addproduct(name, category, price, description, imgUrl, featured) {
 
@@ -53,10 +66,8 @@ async function addproduct(name, category, price, description, imgUrl, featured) 
         
         const result = await response.json();
 
-        console.log(result);
-
         if(result.created_at) {
-            userMessages("success", "Product was successfully added to store.", ".add-message-container");
+            userMessages("success", `Product was successfully added to store. <a href="products.html">Visit the products page.</a>`, ".add-message-container");
             form.reset();
             getSelectProducts();
         }

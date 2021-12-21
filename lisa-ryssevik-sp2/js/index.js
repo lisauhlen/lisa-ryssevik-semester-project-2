@@ -1,6 +1,9 @@
 import { productsUrl } from "./settings/api.js";
 import { featuredProducts } from "./components/createHtml/featuredProducts.js";
 import userMessages from "./components/commons/userMessages.js";
+import { displayCartIcon } from "./components/createHtml/cartIcon.js";
+
+displayCartIcon();
 
 (async function() {
 
