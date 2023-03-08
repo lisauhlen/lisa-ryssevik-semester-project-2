@@ -1,0 +1,33 @@
+h1,
+h2,
+h4 {
+    font-family: $font-headings;
+    font-size: 30px;
+    margin-bottom: getSpacing(xsmall);
+    text-align: center;
+
+    @media (min-width: breakpoint(large)) {
+        font-size: 40px;
+    }
+}
+
+.hero-img h1 {
+    color: #fff;
+    filter: drop-shadow(0 3px 6px #000);
+}
+
+.cart-h1 {
+    margin-bottom: getSpacing(small);
+}
+
+p {
+    text-align: center;
+}
+
+.paragraph {
+    margin-bottom: getSpacing(small);
+}
+
+.italic {
+    font-style: italic;
+}

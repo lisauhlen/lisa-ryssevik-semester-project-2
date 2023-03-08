@@ -1,0 +1,77 @@
+.form-control {
+    line-height: 2.2;
+
+    &::placeholder {
+        color: getColour(placeholder);
+        opacity: 1; 
+    }
+    &:-ms-input-placeholder {
+        color: getColour(placeholder);
+    }
+    &::-ms-input-placeholder {
+        color: getColour(placeholder);
+    }
+}
+
+.form-control.input {
+    border-radius: 0;
+    border: 1px solid #BF6C3B;
+}
+
+.form-select {
+    @extend .form-control;
+    @extend .form-control.input;
+    color: getColour(font);
+}
+
+#add-description,
+#edit-description {
+    min-height: getSpacing(large);
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: getSpacing(small);
+
+    button {
+        max-width: 100%;
+    }
+
+    @media (min-width: breakpoint(medium)) {
+        flex-direction: row;
+
+        button {
+            flex-shrink: 4;
+        }
+    }
+}
+
+.edit-section {
+    display: none;
+}
+
+#select-products-form {
+    button {
+        margin-bottom: getSpacing(medium);
+    }
+}
+
+.message {
+    padding: 1.75rem;
+    background-color: #EAEAEA;
+    margin-bottom: getSpacing(small);
+}
+
+.message.success {
+    background-color: getColour(primary);
+    color: #fff; 
+
+    a {
+        color: #fff;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+}

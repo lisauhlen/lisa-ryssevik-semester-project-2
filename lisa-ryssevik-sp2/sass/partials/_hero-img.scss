@@ -1,0 +1,36 @@
+.hero-img {
+    background-image: url("https://res.cloudinary.com/lisaur/image/upload/v1640083376/hero-image/hero-xs.jpg");
+    min-height: 390px;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: getSpacing(small);
+
+    .btn-primary {
+        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
+    }
+
+    @media (min-width: breakpoint(small)) {
+        background-image: url("https://res.cloudinary.com/lisaur/image/upload/v1640083376/hero-image/hero-s.jpg");
+        min-height: 290px;
+    }
+
+    @media (min-width: breakpoint(medium)) {
+        background-image: url("https://res.cloudinary.com/lisaur/image/upload/v1640083376/hero-image/hero-m.jpg");
+        min-height: 494px;
+    }
+
+    @media (min-width: breakpoint(large)) {
+        background-image: url("https://res.cloudinary.com/lisaur/image/upload/v1640083376/hero-image/hero-l.jpg");
+        min-height: 560px;
+        padding-bottom: 50px;
+    }
+
+    @media (min-width: breakpoint(xxlarge)) {
+        min-height: 740px;
+    }
+}

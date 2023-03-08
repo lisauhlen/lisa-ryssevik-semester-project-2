@@ -1,0 +1,42 @@
+footer {
+    background-color: getColour(primary);
+    color: getColour(secondary);
+    padding-top: getSpacing(medium);
+    padding-bottom: getSpacing(small);
+    flex-shrink: 0;
+
+    .row {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        margin-bottom: getSpacing(small);
+    }
+
+    a {
+        text-align: center;
+    }
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin: getSpacing(small) auto;
+
+    img {
+        padding: 0 12px;
+        
+    }
+}
+
+.admin-panel {
+    color: #fff;
+    margin-bottom: getSpacing(medium);
+}
+
+.admin-panel:hover {
+    color: #F2D4AE;
+}

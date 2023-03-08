@@ -30,4 +30,3 @@ function removeFromCart(event) {
     saveProduct(newCartList);
     checkCartContent();
 }
-

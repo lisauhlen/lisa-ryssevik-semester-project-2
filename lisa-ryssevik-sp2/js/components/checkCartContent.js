@@ -8,11 +8,18 @@ import { calculateTotalPrice } from "./createHtml/totalPrice.js";
 export function checkCartContent() {
 
     const cartContainer = document.querySelector(".cart-container");
+    const emptyCartContainer = document.querySelector(".empty-cart-container");
 
     const cartContent = getCartList();
 
     if(cartContent.length === 0) {
-        cartContainer.innerHTML = `<p>You have no products in your cart.</p><a href="products.html">Find your new favourite pieces here!</a>`;
+
+        cartContainer.innerHTML = "";
+
+        emptyCartContainer.innerHTML = `<div class="empty-cart-message">
+                                        <p>You have no products in your cart.</p>
+                                        <a href="products.html" class="btn btn-primary">To the Store</a>
+                                    </div>`;
         calculateTotalPrice([]);
     } else {
         createCartHtml(cartContent);

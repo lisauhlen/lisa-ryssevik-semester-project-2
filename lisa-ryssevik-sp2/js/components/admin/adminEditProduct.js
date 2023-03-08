@@ -1,8 +1,9 @@
 import { productsUrl } from "./../../settings/api.js";
 import userMessages from "../commons/userMessages.js";
-import { getToken } from "../commons/localStorage.js";
+import { getToken, getImgURL } from "../commons/localStorage.js";
 import { getSelectProducts } from "./setFormValues.js";
 import { validateAdminForm } from "./validateAdminForms.js";
+import { editImgKey } from "../../settings/settings.js";
 
 const messageContainer = document.querySelector(".edit-message-container");
 const form = document.querySelector("#edit-product");
@@ -14,7 +15,7 @@ const imageUrl = document.querySelector("#edit-image");
 const featured = document.querySelector("#edit-featured");
 const idInput = document.querySelector("#edit-id");
 
-// Form is filled with product details in setFormValues.js
+// Form is populated with product details and the upload image form is activated in setFormValues.js
 
 
 // Activating the form's submit function
@@ -22,6 +23,7 @@ const idInput = document.querySelector("#edit-id");
 export function activateEditForm() {
     form.addEventListener("submit", submitForm);
 }
+
 
 // Getting and validating all the form values
 
@@ -34,9 +36,13 @@ function submitForm(event) {
     const categoryValue = category.value;
     const priceValue = parseFloat(price.value);
     const descriptionValue = description.value.trim();
-    const imageUrlValue = imageUrl.value.trim();
+    let imageUrlValue = imageUrl.value.trim();
     const featuredValue = featured.value;
     const idValue = idInput.value;
+
+    if(getImgURL(editImgKey)) {
+        imageUrlValue = getImgURL(editImgKey);
+    }
 
     const validate = validateAdminForm(messageContainer.className, productNameValue, categoryValue, priceValue, descriptionValue, imageUrlValue, featuredValue);
 
@@ -45,6 +51,7 @@ function submitForm(event) {
     }
 
 };
+
 
 // Updating product with PUT request to API
 
@@ -72,6 +79,7 @@ async function updateProduct(name, category, price, description, imgUrl, feature
         if(result.updated_at) {
             userMessages("success", `Product was successfully updated. <a href="products.html">Visit the products page.</a>`, ".edit-message-container");
             getSelectProducts();
+            localStorage.removeItem(editImgKey);
         }
 
         if(result.error) {

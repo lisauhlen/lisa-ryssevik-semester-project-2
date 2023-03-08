@@ -1,5 +1,14 @@
 import { listKey, tokenKey, userKey } from "./../../settings/settings.js";
 
+//Save and retrieve image URL for uploaded images
+export function saveImgURL(key, url) {
+    localStorage.setItem(key, url);
+}
+
+export function getImgURL(key) {
+    return localStorage.getItem(key);
+}
+
 
 //Save and retrieve login details 
 export function saveToken(token) {
@@ -25,6 +34,12 @@ export function getUsername(){
 }
 
 
+//Log out from Admin Panel
+export function removeItemFromStorage(key) {
+    localStorage.removeItem(key);
+}
+
+
 //Add products to cart and get cart list
 export function saveProduct(product) {
     saveToStorage(listKey, product);
@@ -32,12 +47,6 @@ export function saveProduct(product) {
 
 export function getCartList() {
     return retrieveFromStorage(listKey);
-}
-
-
-//Log out from Admin Panel
-export function removeItemFromStorage(key) {
-    localStorage.removeItem(key);
 }
 
 

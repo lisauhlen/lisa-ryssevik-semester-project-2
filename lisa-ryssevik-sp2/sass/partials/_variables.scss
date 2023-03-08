@@ -1,0 +1,38 @@
+$font-primary: 'Spartan', 'Arial', sans-serif;
+$font-headings: 'Antic Didone', 'Garamond', serif;
+
+$colours: (
+  primary: #594c34,
+  cta: #8c4227,
+  font: #4B4B4B,
+  placeholder: #8D8C8C,
+  details: #bf6c3b,
+  secondary: #f2d4ae,
+);
+
+@function getColour($colour) {
+    @return map-get($colours, $colour);
+}
+
+$breakpoints: (
+    small: 576px,
+    medium: 768px,
+    large: 992px, 
+    xlarge: 1200px, 
+    xxlarge: 1400px,
+);
+
+@function breakpoint($size) {
+    @return map-get($breakpoints, $size);
+}
+
+$spacing: (
+    xsmall: 16px,
+    small: 25px,
+    medium: 70px,
+    large: 140px, 
+);
+
+@function getSpacing($size) {
+    @return map-get($spacing, $size);
+}

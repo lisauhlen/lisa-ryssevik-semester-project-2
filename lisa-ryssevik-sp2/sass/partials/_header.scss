@@ -1,0 +1,23 @@
+.banner {
+    background-color: getColour(primary);
+    color: getColour(secondary);
+    padding: 20px;
+
+    div {
+        line-height: 2;
+        text-align: center;
+    }
+
+    @media (min-width: breakpoint(medium)) {
+        div {
+            display: flex;
+            justify-content: space-around;
+            line-height: 1.2;
+        }
+    }
+}
+
+.logo {
+    width: 210px;
+    padding: 10px 20px;
+}

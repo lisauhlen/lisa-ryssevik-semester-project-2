@@ -11,29 +11,39 @@ const cartList = getCartList();
 export function createProductDetails(product){
 
     document.title = product.name + " | Joyaux Jewelry";
-    document.querySelector("h1").innerHTML = product.name;
+    document.querySelector(".breadcrumb-item.active").innerHTML = product.name;
 
     const detailsContainer = document.querySelector(".details-container");
-    const cartButton = document.querySelector(".cart-button");
-    const cartLink = document.querySelector(".cart-link");
     
     detailsContainer.innerHTML = "";
 
-    detailsContainer.innerHTML += `<div>
-                                        <img src="${product.imgUrl}" alt="The ${product.name} ${product.category} from Joyaux Jewelry">
-                                        <p>${product.name}</p>
-                                        <p>${product.category}</p>
+    detailsContainer.innerHTML += `<div class="row product-details">
+                                      <div  class="col-sm-6">
+                                        <img src="${product.imgUrl}" class="img-fluid" alt="The ${product.name} ${product.category} from Joyaux Jewelry">
+                                      </div>
+                                      <div class="col-sm-6 product-text">
+                                        <h1>${product.name}</h1>
+                                        <p class="product-category">${product.category}</p>
                                         <p>${product.description}</p>
-                                        <p class="author">Kr. ${product.price},-</p>
+                                        <p class="price">Kr. ${product.price},-</p>
+                                        <div class="cart-message-container">
+                                          <button type="button" class="btn btn-primary cart-button">Add to Cart</button>
+                                        </div>
+                                      </div>
                                     </div>`;
-    
+  
     
     // Adding click function to Add to cart button, updating the cart icon, and displaying success message
+    const cartMessage = document.querySelector(".cart-message-container");
+    const cartButton = document.querySelector(".cart-button");
+
     cartButton.addEventListener("click", function() {
         addToCart(product);
         cartQuantity();
-        cartButton.innerHTML = "Successfully Added to Cart!";
-        cartLink.style.display = "block";
+        cartMessage.innerHTML = `<div class="cart-message">
+                                  <p>Product was successfully added to <a href="cart.html">cart</a>.</p> 
+                                  <a href="products.html">Continue shopping</a>
+                                </div>`;
       });
 
 };
@@ -43,18 +53,16 @@ export function createProductDetails(product){
 
 function addToCart(product) {
   
-    const currentProductId = product.id;
+    const productId = product.id;
   
-    const itemInCart = cartList.reduce((isFound, item) => {
-      if (item.id === currentProductId) {
-        isFound = true;
+    const itemInCart = cartList.reduce((inCart, item) => {
+      if (item.id === productId) {
+        inCart = true;
       }
-      return isFound;
+      return inCart;
     }, false);
-    console.log('itemInCart', itemInCart);
   
     if (!itemInCart) {
-      console.log('PRODUCT NOT IN CART, ADD IT');
       cartList.push(product);
       saveProduct(cartList);
     }

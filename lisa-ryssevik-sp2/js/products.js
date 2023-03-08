@@ -4,6 +4,9 @@ import userMessages from "./components/commons/userMessages.js";
 import { searchProducts } from "./components/commons/searchProducts.js"
 import { displayCartIcon } from "./components/createHtml/cartIcon.js";
 
+
+// Displaying the cart icon
+
 displayCartIcon();
 
 

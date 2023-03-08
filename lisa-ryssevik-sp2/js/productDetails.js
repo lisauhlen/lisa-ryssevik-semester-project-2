@@ -3,6 +3,8 @@ import { productsUrl } from "./settings/api.js";
 import userMessages from "./components/commons/userMessages.js";
 import { displayCartIcon } from "./components/createHtml/cartIcon.js";
 
+// Displaying the cart icon
+
 displayCartIcon();
 
 // Getting the product id from the querystring
@@ -16,6 +18,7 @@ const detailsUrl = productsUrl + "/" + id;
 
 
 // Getting the chosen product from the API
+
 (async function() {
 
     try {
@@ -26,7 +29,7 @@ const detailsUrl = productsUrl + "/" + id;
         createProductDetails(result);
 
     } catch (error) {
-        userMessages("error", "Unfortunately, we couldn't load products. Please try again later.", ".products-container");
+        userMessages("error", "Unfortunately, we couldn't load products. Please try again later.", ".details-container");
     }
 
 })();

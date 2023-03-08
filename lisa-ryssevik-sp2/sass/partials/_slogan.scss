@@ -1,0 +1,14 @@
+.slogan {
+    margin: 18% auto 8%;
+    font-family: $font-headings;
+    font-size: 22px;
+
+    p {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    @media (min-width: breakpoint(large)) {
+        margin: 170px auto 100px;
+    }
+}

@@ -1,0 +1,16 @@
+.breadcrumb {
+    justify-content: center;
+    text-transform: capitalize;
+
+    .breadcrumb-item.active {
+        color: getColour(font);
+    }
+    
+    a {
+        color: getColour(font);
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+}

@@ -24,8 +24,18 @@ function displayTotalPrice(priceContainer, totalPrice) {
 
     priceContainer.innerHTML = "";
 
-    priceContainer.innerHTML += `<p>Products: Kr. ${totalPrice},-</p>
-                                <p>Shipping: Kr. ${shippingPrice},-</p>
-                                <p>Total: Kr. ${totalPrice + shippingPrice},-</p>`;
+    priceContainer.innerHTML += `<div class="totalprice-details">
+                                    <p>Products:</p> 
+                                    <p>Kr. ${totalPrice},-</p>
+                                </div>
+                                <div class="totalprice-details">
+                                    <p>Shipping:</p> 
+                                    <p>Kr. ${shippingPrice},-</p>
+                                </div>
+                                <div class="totalprice-details fw-bold">
+                                    <p>Total:</p>
+                                    <p>Kr. ${totalPrice + shippingPrice},-</p>
+                                </div>
+                                <button type="button" class="btn btn-primary btn-wide">To Checkout</button>`;
 
 };

@@ -11,10 +11,13 @@ export function createProducts(products){
         productsToRender.forEach(function (product) {
 
             productsContainer.innerHTML += `<a href="productDetails.html?id=${product.id}" class="product-div">
-                                                <img src="${product.imgUrl}" alt="The ${product.name} ${product.category} from Joyaux Jewelry">
-                                                <p>${product.name}</p>
-                                                <p>${product.category}</p>
-                                                <p class="author">Kr. ${product.price},-</p>
+                                                <div class="card bg-dark text-white" style="background-image: url(${product.imgUrl})">
+                                                    <div class="card-img-overlay">
+                                                        <h3 class="card-title">${product.name}</h3>
+                                                        <p class="card-text">${product.category}</p>
+                                                        <p class="price card-text">Kr. ${product.price},-</p>
+                                                    </div>
+                                                </div>
                                             </a>`;
 
         });

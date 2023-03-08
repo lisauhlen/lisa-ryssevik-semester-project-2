@@ -4,7 +4,11 @@ import userMessages from "../commons/userMessages.js";
 
 // Validating the admin forms' values
 
-export function validateAdminForm(messageContainer, productNameValue, categoryValue, priceValue, descriptionValue, imageUrlValue, featuredValue) {
+export function validateAdminForm(messageContainer, productNameValue, categoryValue, priceValue, descriptionValue, imgURL, featuredValue) {
+
+    if(!validateURL(imgURL)) {
+        return userMessages("error", "Please choose and confirm a product image to upload.", `.${messageContainer}`);
+    }
 
     if(!validateLength(productNameValue, 2)) {
         return userMessages("error", "Product name must have at least two characters.", `.${messageContainer}`);
@@ -20,10 +24,6 @@ export function validateAdminForm(messageContainer, productNameValue, categoryVa
 
     if(!validateLength(descriptionValue, 10)) {
         return userMessages("error", "Product description must have at least 10 characters.", `.${messageContainer}`);
-    }
-
-    if(!validateURL(imageUrlValue)) {
-        return userMessages("error", "Please enter a valid image URL.", `.${messageContainer}`);
     }
 
     if(!featuredValue) {

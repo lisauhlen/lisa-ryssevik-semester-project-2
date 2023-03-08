@@ -4,6 +4,9 @@ import { saveToken, saveUser} from "./components/commons/localStorage.js";
 import { validateEmail, validateLength } from "./components/commons/validateForm.js";
 import { displayCartIcon } from "./components/createHtml/cartIcon.js";
 
+
+// Displaying the cart icon
+
 displayCartIcon();
 
 const loginForm = document.querySelector("#admin-login");
@@ -11,7 +14,9 @@ const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 const messageContainer = document.querySelector(".message-container");
 
+
 // Validating the login details
+
 loginForm.onsubmit = function(event) {
     event.preventDefault();
 
@@ -33,6 +38,7 @@ loginForm.onsubmit = function(event) {
 
 
 // Logging in to Admin Panel with POST request
+
 async function adminLogin(email, password) {
 
     const loginUrl = baseUrl + "auth/local";
@@ -66,6 +72,6 @@ async function adminLogin(email, password) {
         }
 
     } catch(error) {
-        console.log(error);
+        userMessages("error", "We weren't able to log you in at the moment. Please try again later.", ".message-container");
     }
 }

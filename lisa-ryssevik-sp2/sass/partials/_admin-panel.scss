@@ -1,0 +1,36 @@
+.admin-dasboard {
+
+    p {
+        text-align: left;
+        margin-bottom: getSpacing(xsmall);
+    }
+    
+    h4 {
+        font-size: 30px;
+        margin-bottom: getSpacing(small);
+    }
+
+    .username {
+        text-align: center;
+    }
+}
+
+.admin-panel-heading {
+    margin: getSpacing(medium) auto getSpacing(small);
+}
+
+.image-container {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto 70px;
+
+    img {
+        max-width: 200px;
+        border: 1px solid getColour(details);
+    }
+
+    p {
+        text-align: center;
+        margin-top: getSpacing(small);
+    }
+}

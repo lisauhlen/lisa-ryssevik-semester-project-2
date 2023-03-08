@@ -4,7 +4,11 @@ import { checkCartContent } from "./components/checkCartContent.js";
 import { saveProduct } from "./components/commons/localStorage.js";
 import { displayCartIcon } from "./components/createHtml/cartIcon.js";
 
+
+// Displaying the cart icon
+
 displayCartIcon();
+
 
 const cartContainer = document.querySelector(".cart-container");
 
@@ -12,10 +16,12 @@ let productQuantity = {id: 0};
 
 
 // Checking if the cart has content
+
 checkCartContent();
 
 
 // Creating html from the cart content
+
 export function createCartHtml(product) {
 
     function productHtml(product) {
@@ -27,29 +33,32 @@ export function createCartHtml(product) {
 
             let productPrice = product.price * product.quantity;
 
-            cartContainer.innerHTML += `<div>
-                                            <a href="productDetails.html?id=${product.id}">
-                                                <img src="${product.imgUrl}" alt="${product.name} ${product.category}">
-                                                <p>${product.name}</p>
+            cartContainer.innerHTML += `<div class="cart-content">
+                                            <a href="productDetails.html?id=${product.id}" class="cart-img">
+                                                <img src="${product.imgUrl}" class="img-fluid" alt="${product.name} ${product.category}">
                                             </a>
-                                            <div>
-                                                <img src="images/arrow-down.svg" alt="arrow down" class="arrow-down" data-item="${product.id}">
-                                                    <span>${product.quantity}</span>
-                                                <img src="images/arrow-up.svg" alt="arrow up" class="arrow-up" data-item="${product.id}">
+                                            <div class="cart-text">
+                                                <a href="productDetails.html?id=${product.id}">
+                                                    <p>${product.name}</p>
+                                                </a>
+                                                <div class="product-quantity">
+                                                    <img src="images/arrow-down.svg" alt="arrow down" class="arrow-down" data-item="${product.id}">
+                                                        <span>${product.quantity}</span>
+                                                    <img src="images/arrow-up.svg" alt="arrow up" class="arrow-up" data-item="${product.id}">
+                                                </div>
+                                                <p class="price-field">Kr. ${productPrice},-</p>
                                             </div>
-                                            <p class="price-field">${productPrice}</p>
-                                            <button type="button" class="trash-can" data-item="${product.id}">Remove</button>
+                                            <img src="images/trash-can-icon.svg" class="img-fluid trash-can" data-item="${product.id} alt="trash can icon">
                                         </div>
                                         `;
 
-            // Displaying trash can icons, applying click function to arrows, and updating total price
+            // Adding click function to remove button and arrows, and updating total price
             trashCanHtml();
             changeQuantity();
 
             defaultPrice.push(productPrice);
             calculateTotalPrice(defaultPrice);
         });
-    // saveProduct(product);
     }
     productHtml(product);
 

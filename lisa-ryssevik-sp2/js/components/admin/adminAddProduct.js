@@ -1,17 +1,20 @@
 import userMessages from "../commons/userMessages.js";
 import { productsUrl } from "../../settings/api.js";
-import { getToken } from "../commons/localStorage.js";
+import { getToken, getImgURL } from "../commons/localStorage.js";
 import { getSelectProducts } from "./setFormValues.js";
 import { validateAdminForm } from "./validateAdminForms.js";
+import { imgKey } from "../../settings/settings.js";
 
 const form = document.querySelector("#add-product");
+const uploadForm = document.querySelector("#upload-form");
+const imageContainer = document.querySelector("#add-image-container");
 const productName = document.querySelector("#add-name");
 const category = document.querySelector("#add-category");
 const price = document.querySelector("#add-price");
 const description = document.querySelector("#add-description");
-const imageUrl = document.querySelector("#add-image");
 const featured = document.querySelector("#add-featured");
 const messageContainer = document.querySelector(".add-message-container");
+
 
 // Activating the form's submit function
 
@@ -31,23 +34,23 @@ function submitForm(event) {
     const categoryValue = category.value;
     const priceValue = parseFloat(price.value);
     const descriptionValue = description.value.trim();
-    const imageUrlValue = imageUrl.value.trim();
+    const imgURL = getImgURL(imgKey);
     const featuredValue = featured.value;
 
-    const validate = validateAdminForm(messageContainer.className, productNameValue, categoryValue, priceValue, descriptionValue, imageUrlValue, featuredValue);
+    const validate = validateAdminForm(messageContainer.className, productNameValue, categoryValue, priceValue, descriptionValue, imgURL, featuredValue);
 
     if(validate) {
-        const imgUrl = "https://res.cloudinary.com/lisaur/image/fetch/" + imageUrlValue; 
-        addproduct(productNameValue, categoryValue, priceValue, descriptionValue, imgUrl, featuredValue);
+        addproduct(productNameValue, categoryValue, priceValue, descriptionValue, imgURL, featuredValue);
     }
     
 }
 
-// Adding the new product with POST request to API
 
-async function addproduct(name, category, price, description, imgUrl, featured) {
+// Sending the new product with POST request to API
 
-    const data = JSON.stringify({name: name, category: category, price: price, description: description, imgUrl: imgUrl, featured: featured});
+async function addproduct(name, category, price, description, imgURL, featured) {
+
+    const data = JSON.stringify({name: name, category: category, price: price, description: description, imgUrl: imgURL, featured: featured});
 
     const token = getToken();
 
@@ -68,7 +71,10 @@ async function addproduct(name, category, price, description, imgUrl, featured) 
         if(result.created_at) {
             userMessages("success", `Product was successfully added to store. <a href="products.html">Visit the products page.</a>`, ".add-message-container");
             form.reset();
+            uploadForm.reset();
+            imageContainer.innerHTML = "";
             getSelectProducts();
+            localStorage.removeItem(imgKey);
         }
 
         if(result.error) {

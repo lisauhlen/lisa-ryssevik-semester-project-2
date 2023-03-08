@@ -1,12 +1,14 @@
 import { productsUrl } from "../../settings/api.js";
 import userMessages from "../commons/userMessages.js";
 import deleteButton from "./deleteButton.js";
+import { activateEditImageUpload } from "./editUploadedImage.js";
 
 const productsForm = document.querySelector("#select-products-form");
 const productsDropdown = document.querySelector(".products-dropdown");
 
 const messageContainer = document.querySelector(".edit-message-container");
-const form = document.querySelector("#edit-product");
+const productHeading = document.querySelector("#edit-heading");
+const form = document.querySelector(".edit-section");
 const productName = document.querySelector("#edit-name");
 const category = document.querySelector("#edit-category");
 const price = document.querySelector("#edit-price");
@@ -14,6 +16,7 @@ const description = document.querySelector("#edit-description");
 const imageUrl = document.querySelector("#edit-image");
 const featured = document.querySelector("#edit-featured");
 const idInput = document.querySelector("#edit-id");
+
 
 // Getting all products from the API
 
@@ -59,7 +62,7 @@ function getProductId(event) {
 }
 
 
-// Filling the form with the chosen product's info
+// Filling the form with the chosen product's info and activating the image upload form
 
 async function populateForm(id) {
 
@@ -69,6 +72,8 @@ async function populateForm(id) {
         const response = await fetch(editUrl);
         const result = await response.json();
 
+        productHeading.innerHTML = result.name;
+
         productName.value = result.name;
         category.value = result.category;
         price.value = result.price;
@@ -76,6 +81,8 @@ async function populateForm(id) {
         imageUrl.value = result.imgUrl;
         featured.value = result.featured;
         idInput.value = result.id;
+
+        activateEditImageUpload();
 
         deleteButton(result.id);
 

@@ -1,0 +1,17 @@
+.price-container {
+    line-height: 3;
+    padding: 0;
+}
+
+.totalprice-details {
+    display: flex;
+    justify-content: space-between;
+
+
+}
+
+@media (min-width: breakpoint(medium)) {
+    .price-container {
+        padding-left: 30px;
+    }
+}

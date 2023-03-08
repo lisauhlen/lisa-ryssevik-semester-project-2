@@ -1,8 +1,9 @@
 import { getCartList } from "../commons/localStorage.js";
 
-const cartContainer = document.querySelector(".cart-icon");
+const cartContainer = document.querySelector(".cart-icon-container");
 
-// Displaying a cart icon linked to the cart page
+
+// Displaying the cart icon
 
 export function displayCartIcon() {
     cartContainer.innerHTML = `<a href="cart.html">
